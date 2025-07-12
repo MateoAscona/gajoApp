@@ -1,0 +1,31 @@
+:root {
+  --primary: #2c3e50;
+  --secondary: #ecf0f1;
+  --accent: #3498db;
+  --text: #2c3e50;
+  --bg: #fff;
+  --radius: 4px;
+  --spacer: 1rem;
+}
+* { box-sizing: border-box; }
+body { margin:0; font-family: Arial, sans-serif; display: flex; height: 100vh; color: var(--text); background: var(--secondary); }
+aside { width: 200px; background: var(--primary); color: var(--secondary); padding: var(--spacer); display: flex; flex-direction: column; }
+aside h1 { font-size: 1.2rem; margin-bottom: var(--spacer); }
+aside a { color: var(--secondary); text-decoration: none; margin-bottom: 0.5rem; padding: 0.5rem; border-radius: var(--radius); }
+aside a.active { background: var(--accent); }
+main { flex:1; padding: var(--spacer); overflow-y: auto; }
+section { display: none; }
+section.active { display: block; }
+h2 { margin-top: 0; }
+.form-group { margin-bottom: var(--spacer); }
+label { display: block; margin-bottom: 0.3rem; }
+input, select, button { width: 100%; padding: 0.5rem; border: 1px solid #ccc; border-radius: var(--radius); }
+button { background: var(--accent); color: #fff; border: none; cursor: pointer; }
+button:hover { opacity: 0.9; }
+table { width: 100%; border-collapse: collapse; margin-top: var(--spacer); background: var(--bg); }
+th, td { border: 1px solid #ddd; padding: 0.5rem; text-align: left; }
+th { background: var(--primary); color: var(--secondary); }
+@media print {
+  aside, .no-print { display: none; }
+  .cost { display: none; }
+}

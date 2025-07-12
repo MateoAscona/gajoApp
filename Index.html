@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GAJO - Gestión de Stock y Ventas</title>
+    <link rel="stylesheet" href="public/css/style.css">
+</head>
+
+<body>
+    <aside class="no-print">
+        <h1>GAJO</h1>
+        <a href="#" data-target="clientes-section" class="active">Clientes</a>
+        <a href="#" data-target="productos-section">Productos</a>
+        <a href="#" data-target="facturas">Facturas</a>
+        <a href="#" data-target="remitos">Remitos</a>
+        <a href="#" data-target="recibos">Recibos</a>
+    </aside>
+
+    <main>
+
+
+        <!-- Sección Clientes -->
+       <section id="clientes-section">
+            <h1>Clientes</h1>
+
+            <!-- Formulario Agregar Nuevo Cliente -->
+            <h2>Agregar Nuevo Cliente</h2>
+            <form id="cliente-form">
+                <div class="form-group">
+                    <label for="nombreLocal">Nombre del Local:</label>
+                    <input type="text" id="nombreLocal" name="nombreLocal" required />
+                </div>
+                <div class="form-group">
+                    <label for="nombreContacto">Nombre del Contacto:</label>
+                    <input type="text" id="nombreContacto" name="nombreContacto" />
+                </div>
+                <div class="form-group">
+                    <label for="telefono">Teléfono:</label>
+                    <input type="tel" id="telefono" name="telefono" />
+                </div>
+                <div class="form-group">
+                    <label for="cuitCuil">CUIT/CUIL:</label>
+                    <input type="text" id="cuitCuil" name="cuitCuil" />
+                </div>
+                <div class="form-group">
+                    <label for="direccion">Dirección:</label>
+                    <input type="text" id="direccion" name="direccion" required />
+                </div>
+                <div class="form-group">
+                    <label for="localidadId">Localidad (ID):</label>
+                    <input type="number" id="localidadId" name="localidadId" required />
+                </div>
+                <div class="form-group">
+                    <label for="vendedor">Vendedor asignado:</label>
+                    <select id="vendedor" name="vendedor" required>
+                        <option value="">-- Selecciona un vendedor --</option>
+                    </select>
+                </div>
+                <button type="submit">Agregar Cliente</button>
+            </form>
+
+            <!-- Tabla de Clientes -->
+            <table id="clientes-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Local</th>
+                        <th>Contacto</th>
+                        <th>Teléfono</th>
+                        <th>CUIT/CUIL</th>
+                        <th>Dirección</th>
+                        <th>Localidad ID</th>
+                        <th>Deuda Total</th>
+                        <th>Vendedor</th>
+                    </tr>
+                </thead>
+                <tbody id="clientes-body">
+                    <!-- se llena desde clientes.js -->
+                </tbody>
+            </table>
+
+
+        </section> 
+
+
+        <!-- Sección Productos -->
+        <section id="productos-section">
+            <h1>Productos</h1>
+
+            <!-- Formulario Agregar Nuevo Producto -->
+            <h2>Agregar Nuevo Producto</h2>
+            <form id="producto-form">
+                <div class="form-group">
+                    <label for="prodNombre">Nombre:</label>
+                    <input type="text" id="prodNombre" name="prodNombre" required />
+                </div>
+                <div class="form-group">
+                    <label for="prodCategoria">Categoría:</label>
+                    <input type="text" id="prodCategoria" name="prodCategoria" />
+                </div>
+                <div class="form-group">
+                    <label for="prodPeso">Peso (kg):</label>
+                    <input type="number" step="0.01" id="prodPeso" name="prodPeso" required />
+                </div>
+                <div class="form-group">
+                    <label for="prodCosto">Costo de Compra:</label>
+                    <input type="number" step="0.01" id="prodCosto" name="prodCosto" required />
+                </div>
+                <div class="form-group">
+                    <label for="prodPrecio">Previo venta:</label>
+                    <input type="number" step="0.01" id="prodPrecio" name="prodPrecio" required />
+                </div>
+                <div class="form-group">
+                    <label for="prodStock">Stock Inicial:</label>
+                    <input type="number" id="prodStock" name="prodStock" min="0" value="0" required />
+                </div>
+                <button type="submit">Agregar Producto</button>
+            </form>
+
+            <!-- Tabla de Productos -->
+            <table id="productos-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Categoría</th>
+                        <th>Peso (kg)</th>
+                        <th>Costo Compra</th>
+                        <th>Precio Venta</th>
+                        <th>Stock Actual</th>
+                    </tr>
+                </thead>
+                <tbody id="productos-body">
+                    <!-- se llena desde productos.js -->
+                </tbody>
+            </table>
+
+
+        </section>
+
+        <section id="facturas">
+            <h2>Facturas</h2>
+            <p>Próximamente...</p>
+        </section>
+
+        <section id="remitos">
+            <h2>Remitos</h2>
+            <p>Próximamente...</p>
+        </section>
+
+        <section id="recibos">
+            <h2>Recibos</h2>
+            <p>Próximamente...</p>
+        </section>
+    </main>
+
+    <script src="public/js/main.js" type="module"></script>
+    <script src="public/js/api.js" type="module"></script>
+    <script src="public/js/clientes.js" type="module"></script>
+    <script src="public/js/productos.js" type="module"></script>
+</body>
+
+</html>
