@@ -1,5 +1,7 @@
 package com.gajo.app.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -28,6 +30,18 @@ public class Producto {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "proveedor_id")
+    @JsonIgnore
     private Proveedor proveedor;
+
+    @JsonProperty("proveedor")
+    public String getProveedorNombre() {
+        return proveedor != null ? proveedor.getNombre() : null;
+    }
+
+    @JsonProperty("proveedorId")
+    public Integer getProveedorId() {
+        return proveedor != null ? proveedor.getId() : null;
+    }
+
 }
 

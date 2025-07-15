@@ -59,4 +59,29 @@ public class ProductoController {
     public void delete(@PathVariable Integer id) {
         productoService.deleteById(id);
     }
+
+    /**
+     * Filtrado dinámico:
+     * /api/productos/search?pesoMin=…&pesoMax=…&precioMin=…&precioMax=…&proveedorId=…
+     */
+    @GetMapping("/search")
+    public List<Producto> search(
+            @RequestParam Optional<Double> pesoMin,
+            @RequestParam Optional<Double> pesoMax,
+            @RequestParam Optional<Double> precioMin,
+            @RequestParam Optional<Double> precioMax,
+            @RequestParam Optional<Integer> proveedorId
+    ) {
+        return productoService.buscar(pesoMin, pesoMax, precioMin, precioMax, proveedorId);
+    }
+
+    /**
+     * Autocomplete de nombre:
+     * /api/productos/autocomplete?term=par
+     */
+
+    @GetMapping("/autocomplete")
+    public List<Producto> autocomplete(@RequestParam String term) {
+        return productoService.autocomplete(term);
+    }
 }

@@ -1,6 +1,8 @@
 // 3. Nueva entidad JPA: Proveedor.java
 package com.gajo.app.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -32,6 +34,7 @@ public class Proveedor {
     private String email;
 
     @OneToMany(mappedBy = "proveedor", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Producto> productos;
 }
 
