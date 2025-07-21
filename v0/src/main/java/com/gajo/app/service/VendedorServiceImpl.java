@@ -3,7 +3,6 @@ package com.gajo.app.service;
 
 import com.gajo.app.model.Vendedor;
 import com.gajo.app.repository.VendedorRepository;
-import com.gajo.app.service.VendedorService;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;

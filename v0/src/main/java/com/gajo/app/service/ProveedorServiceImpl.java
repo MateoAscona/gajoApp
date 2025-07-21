@@ -3,7 +3,6 @@ package com.gajo.app.service;
 
 import com.gajo.app.model.Proveedor;
 import com.gajo.app.repository.ProveedorRepository;
-import com.gajo.app.service.ProveedorService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

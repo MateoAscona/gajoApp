@@ -1,11 +1,12 @@
 // src/main/java/com/gajo/app/model/Vendedor.java
 package com.gajo.app.model;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.List;
+
 
 @Entity
 @Table(name = "vendedores", schema = "negocio")
@@ -26,5 +27,8 @@ public class Vendedor {
     @Column(length = 100)
     private String email;
 
+    @OneToMany(mappedBy = "vendedor", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    private List<PrecioVenta> preciosVenta;
 }
 

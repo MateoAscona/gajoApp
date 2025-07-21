@@ -18,15 +18,18 @@ public class RemitoService {
     private final ProductoRepository productoRepo;
     private final DeudaRepository deudaRepo;
     private final ClienteRepository clienteRepo;
+    private final PrecioVentaRepository precioVentaRepo;
 
     public RemitoService(RemitoRepository remitoRepo,
                          ProductoRepository productoRepo,
                          DeudaRepository deudaRepo,
-                         ClienteRepository clienteRepo) {
+                         ClienteRepository clienteRepo,
+                         PrecioVentaRepository precioVentaRepo) {
         this.remitoRepo = remitoRepo;
         this.productoRepo = productoRepo;
         this.deudaRepo = deudaRepo;
         this.clienteRepo = clienteRepo;
+        this.precioVentaRepo = precioVentaRepo;
     }
 
     @Transactional
@@ -61,15 +64,22 @@ public class RemitoService {
 
             // 3.2 crear detalle
             DetalleRemito dr = new DetalleRemito();
+            Integer vendedorId = cli.getVendedor().getId();
+            var precioOpt = precioVentaRepo.findByProductoIdAndVendedorId(p.getId(), vendedorId);
+            if (precioOpt.isEmpty()) {
+                throw new IllegalArgumentException("No hay precio de venta para el producto " + p.getId() + " y vendedor " + vendedorId);
+            }
+            double precioVenta = precioOpt.get().getPrecio().doubleValue();
+
             dr.setRemito(r);
             dr.setProducto(p);
             dr.setCantidad(drq.getCantidad());
             dr.setPrecioCosto(p.getCostoCompra());
-            dr.setPrecioVenta(p.getPrecioVenta());
+            dr.setPrecioVenta(precioVenta);
             detalles.add(dr);
 
             totalCosto += p.getCostoCompra() * drq.getCantidad();
-            totalPrecio += p.getPrecioVenta() * drq.getCantidad();
+            totalPrecio += precioVenta * drq.getCantidad();
         }
 
         r.setDetalles(detalles);
